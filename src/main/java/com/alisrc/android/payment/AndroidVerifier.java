@@ -2,6 +2,7 @@ package com.alisrc.android.payment;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +18,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 
 
-public class Verifier {
+public class AndroidVerifier {
 
 	/**
 	 * 
@@ -89,19 +90,11 @@ public class Verifier {
 	 * @throws Exception, CertificateException, CertificateExpiredException, CertificateNotYetValidException
 	 */
 	public static PublicKey getPublicKeyFromCert(String cert) throws Exception {
+		
 		byte data[];
-		PublicKey pk = null;
 		data = decode(cert);
 		
-		CertificateFactory f = CertificateFactory.getInstance("X.509");
-		X509Certificate certificate = (X509Certificate) f
-				.generateCertificate(new ByteArrayInputStream(data));
-		
-		certificate.checkValidity(); 
-		
-		pk = certificate.getPublicKey();
-
-		return pk;
+		return getPK(new ByteArrayInputStream(data));		
 	}
 	
 	/**
@@ -111,11 +104,23 @@ public class Verifier {
 	 * @throws Exception, FileNotFoundException, CertificateException, CertificateExpiredException, CertificateNotYetValidException
 	 */
 	public static PublicKey getPublicKeyFromFile(String fileName) throws Exception {
-		PublicKey pk = null;
 		
 		FileInputStream fin = new FileInputStream(fileName);
+		
+		return getPK(fin);
+	}
+	
+	/**
+	 * 
+	 * @param inStream, InputStream which contains public key string
+	 * @return PublicKey object to use
+	 * @throws Exception, CertificateException, CertificateExpiredException, CertificateNotYetValidException
+	 */
+	private static PublicKey getPK(InputStream inStream) throws Exception {
+		PublicKey pk = null;
+		
 		CertificateFactory f = CertificateFactory.getInstance("X.509");
-		X509Certificate certificate = (X509Certificate)f.generateCertificate(fin);
+		X509Certificate certificate = (X509Certificate)f.generateCertificate(inStream);
 		
 		certificate.checkValidity();
 
@@ -123,7 +128,7 @@ public class Verifier {
 		
 		return pk;
 	}
-	
+
 	/**
 	 * 
 	 * @param string to base 64 decode 

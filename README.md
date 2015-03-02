@@ -11,16 +11,19 @@ gradle build
 
 ```java
 // import class
-import com.alisrc.android.payment.Verifier;
+import com.alisrc.android.payment.AndroidVerifier;
+import com.alisrc.ios.payment.IosVerifier;
 
-// check verification
-boolean isVerified = Verifier.verifySignature(signedData, signature, pubkey);
+// check android payment verification
+boolean androidPaymentVerified = AndroidVerifier.verifySignature(signedData, signature, pubkey);
+
+// check ios payment verification
+boolean iosPaymentVerified = IosVerifier.checkIosPayment(orderId, isSandbox);
 ```
 
 ## TODO
 
 - Write functional tests
-- Add ios verifier
 - Add windows phone verifier
 - Gradle wrapper can be added to the project
 
