@@ -22,10 +22,10 @@ boolean androidPaymentVerified = AndroidVerifier.verifySignature(signedData, sig
 boolean iosPaymentVerified = IosVerifier.checkIosPayment(orderId, isSandbox);
 
 // check windows phone store verification
-boolean iosPaymentVerified = WindowsVerifier.validateWindowsPhoneStore(xmlString);
+boolean WindowsPhonePaymentVerified = WindowsVerifier.validateWindowsPhoneStore(xmlString);
 
 // check windows store verification
-boolean iosPaymentVerified = WindowsVerifier.validateWindowsStore(xmlString);
+boolean WindowsStorePaymentVerified = WindowsVerifier.validateWindowsStore(xmlString);
 
 ```
 
