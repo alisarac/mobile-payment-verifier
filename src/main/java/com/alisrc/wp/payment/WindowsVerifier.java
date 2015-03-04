@@ -26,6 +26,8 @@ import org.xml.sax.InputSource;
 public class WindowsVerifier {
 	
 	public static boolean validateWindowsPhoneStore(String xmlData) throws Exception {
+		xmlData= xmlData.replaceAll(">\\s+<","><");
+		xmlData= xmlData.replaceAll(".*<Receipt","<Receipt");
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);
@@ -47,7 +49,7 @@ public class WindowsVerifier {
 			return false;
 		}
 		
-		PublicKey pk = getPublicKeyFromFile("IapReceiptProduction.cer");
+		PublicKey pk = getPublicKeyFromFile("src/main/resources/IapReceiptProduction.cer");
 
 		// document containing the XMLSignature
 		DOMValidateContext valContext = new DOMValidateContext(pk, nl.item(0));
@@ -71,6 +73,9 @@ public class WindowsVerifier {
 	}
 
 	public static boolean validateWindowsStore(String xmlData) throws Exception {
+
+		xmlData= xmlData.replaceAll(">\\s+<","><");
+		xmlData= xmlData.replaceAll(".*<Receipt","<Receipt");
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);
