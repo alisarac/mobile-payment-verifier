@@ -18,7 +18,12 @@ import com.alisrc.wp.payment.WindowsVerifier;
 // check android payment verification
 boolean androidPaymentVerified = AndroidVerifier.verifySignature(signedData, signature, pubkey);
 
-// check ios payment verification
+
+// check ios payment verification in live 
+// if status code is 21007 then check sandbox mode
+boolean iosPaymentVerified = IosVerifier.checkIosPayment(orderId);
+
+// or check ios payment verification with knowing it is sandbox or not
 boolean iosPaymentVerified = IosVerifier.checkIosPayment(orderId, isSandbox);
 
 // check windows phone store verification

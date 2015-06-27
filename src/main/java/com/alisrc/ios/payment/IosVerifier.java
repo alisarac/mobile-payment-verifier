@@ -16,7 +16,6 @@ public class IosVerifier {
 		
 		String verifyUrl = "https://buy.itunes.apple.com/verifyReceipt";
 		
-		// in sandbox mode, verification url should be different
 		if(isSandbox){
 			verifyUrl = "https://sandbox.itunes.apple.com/verifyReceipt";
 		}
@@ -50,15 +49,30 @@ public class IosVerifier {
 		in.close();
 		
 		Gson gson = new Gson();  
-		json = gson.fromJson(response.toString(), IosVerifyResponse.class);  
-	
+		json = gson.fromJson(response.toString(), IosVerifyResponse.class);
+		
+		// if sandbox order is sent to live
+		// we know it and we can verify it in sandbox mode
+		if(json.getStatus() == 21007){
+			return iosVerify(orderId, true);
+		}
 		return json;
 	}
-	
+		
 	public static boolean checkIosPayment(String orderId, boolean isSandbox) throws IOException {
 		boolean isVerified = false;
 		
 		IosVerifyResponse verifiedData = iosVerify(orderId, isSandbox);
+		
+		if(verifiedData != null && verifiedData.getReceipt().getUnique_identifier() != null){
+			isVerified = true;
+		}
+		return isVerified;
+	}
+	public static boolean checkIosPayment(String orderId) throws IOException {
+		boolean isVerified = false;
+		
+		IosVerifyResponse verifiedData = iosVerify(orderId, false);
 		
 		if(verifiedData != null && verifiedData.getReceipt().getUnique_identifier() != null){
 			isVerified = true;
