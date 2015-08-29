@@ -10,7 +10,6 @@ import java.security.spec.EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.StringUtils;
 
 
 public class AndroidVerifier {
@@ -84,7 +83,7 @@ public class AndroidVerifier {
 	 * @return base 64 decoded byte array of the string 
 	 */
 	private static byte[] decode(String s) {
-	    return StringUtils.newStringUtf8(Base64.decodeBase64(s)).getBytes();
+		return Base64.decodeBase64(s);
 	}
 
 }
