@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Receipt Version="1.0" ReceiptDate="2012-08-28T22:11:33Z" CertificateId="b809e47cd0110a4db043b3f73e83acd917fe1336" ReceiptDeviceId="4e362949-acc3-fe3a-e71b-89893eb4f528">
+<AppReceipt Id="8ffa256d-eca8-712a-7cf8-cbf5522df24b" AppId="55428GreenlakeApps.CurrentAppSimulatorEventTest_z7q3q7z11crfr" PurchaseDate="2012-06-04T23:07:24Z" LicenseType="Full" />
+<ProductReceipt Id="2559fa9a-9f86-0525-e655-536a6c96fac6" ProductId="Product1" PurchaseDate="2012-06-04T23:07:50Z" ExpirationDate="2012-06-07T23:07:49Z" ProductType="Durable" AppId="55428GreenlakeApps.CurrentAppSimulatorEventTest_z7q3q7z11crfr" />
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+        <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" />
+        <Reference URI="">
+            <Transforms>
+                <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+            </Transforms>
+            <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+            <DigestValue>npmBq7pdtq9FkfILSsHuVyD+QWiZg6J/klBKsyWhrw8=</DigestValue>
+        </Reference>
+    </SignedInfo>
+    <SignatureValue>LKZSHmk6XjLaEHoJPFBB1GxVsFf2eilOXeyf2RvYtVvqjU4EIdOUfNM46sVifq3MyeE4N2s77iJmvdzgxmOM9tCimebiL7jsdpWakO0A9daImHESMPIrwZNham6jPCWaBUEOFT6PNy1v5MS+cdX25Wenk702L0wVQ6R8oGPlk5Im6Q62K69cvAFA3q/kiLHOyTZWHoIGw5lvFvAYI/aZhVoFQLv1FjK0Syg5nbMA19UrzwZ39jnJjcfuw/VX51uSv5Ze2x36HDXTpiw8wHoTzauGYzt9MXd4+qbiJ4AQys22AgO+cfAbDrTuH5duZ6DMeuFeEv8nu2p9PiVyBEOlZw==</SignatureValue>
+</Signature>
+</Receipt>

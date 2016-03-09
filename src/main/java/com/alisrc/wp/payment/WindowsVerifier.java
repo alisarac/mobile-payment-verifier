@@ -16,8 +16,6 @@ import java.security.*;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -126,7 +124,7 @@ public class WindowsVerifier {
 	
 	private static String getCertificate(String cid) {
 		String url = "https://lic.apps.microsoft.com/licensing/certificateserver/?cid=" + cid;
-        String certificate="";
+		String certificate="";
 		try {
 			URL cert = new URL(url);
 	        BufferedReader in;
@@ -212,19 +210,8 @@ public class WindowsVerifier {
 	 */
 	public static PublicKey getPublicKeyFromCert(String cert) throws Exception {
 		
-		byte data[];
-		data = decode(cert);
-		
-		return getPK(new ByteArrayInputStream(data));		
-	}
+		cert = "-----BEGIN CERTIFICATE-----\n"+ cert +"\n-----END CERTIFICATE-----";		
+		return getPK(new ByteArrayInputStream(cert.getBytes()));		
 
-	/**
-	 * 
-	 * @param string to base 64 decode 
-	 * @return base 64 decoded byte array of the string 
-	 */
-	private static byte[] decode(String s) {
-	    return StringUtils.newStringUtf8(Base64.decodeBase64(s)).getBytes();
 	}
-
 }
